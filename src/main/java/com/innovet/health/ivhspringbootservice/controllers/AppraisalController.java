@@ -39,7 +39,7 @@ public class AppraisalController
     }
 
     @GetMapping(value = "/initiate/year/{year}")
-    public ResponseEntity<List<Appraisal>> initiateAppraisalsForAllEmployees(
+    public ResponseEntity<List<AppraisalView>> initiateAppraisalsForAllEmployees(
         @PathVariable(name = "year") Integer year)
     {        
         List<Employee> employees = employeeService.getAllEmployees();
@@ -93,7 +93,7 @@ public class AppraisalController
 
         goalService.createGoals(goals);
 
-        return ResponseEntity.ok(appraisals);
+        return ResponseEntity.ok(appraisalService.getAppraisalViewByYear(year));
     }
     
     @GetMapping("/view/employeeId/{employeeId}")
@@ -101,15 +101,6 @@ public class AppraisalController
         @PathVariable(name = "employeeId") Long employeeId)
     {
         List<AppraisalView> appraisals = appraisalService.getAppraisalViewByEmployeeId(employeeId);
-        
-        return ResponseEntity.ok(appraisals);
-    }
-    
-    @GetMapping("/view/year/{year}")
-    public ResponseEntity<List<AppraisalView>> getAppraisalViewByYear(
-        @PathVariable(name = "year") Integer year)
-    {
-        List<AppraisalView> appraisals = appraisalService.getAppraisalViewByYear(year);
         
         return ResponseEntity.ok(appraisals);
     }
