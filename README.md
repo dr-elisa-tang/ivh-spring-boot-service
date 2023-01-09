@@ -8,7 +8,7 @@ docker build -t ivh-service
 ```
 #Run docker image and create container
 ```
-docker run -p 8090:8090 -t ivh-service
+docker run -p 8080:8080 -t ivh-service
 ```
 
 ## Compile and build locally
